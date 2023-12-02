@@ -5,6 +5,7 @@ import { type BuildMode } from "./config/build/types/types";
 interface EnvVariables {
   mode: BuildMode;
   port: number;
+  analyzer: boolean;
 }
 
 export default (env: EnvVariables) => {
@@ -16,6 +17,7 @@ export default (env: EnvVariables) => {
       html: path.resolve(__dirname, "public", "index.html"),
       output: path.resolve(__dirname, "build"),
     },
+    analyzer: env.analyzer,
   });
   return config;
 };

@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import classes from "./App.module.scss";
+import { Link, Outlet } from "react-router-dom";
 
 interface AppProps {}
 
@@ -8,9 +9,13 @@ export const App: FC<AppProps> = ({}) => {
   return (
     <div>
       <div>
-        <h1 className={classes.text}>{counter}</h1>
-        <h1>Da nu neet</h1>
+        <Link to="/about">About</Link>
+        <hr />
+        <Link to="/shop">Shop</Link>
+        <hr />
+        <Link to="/contacts">Contacts</Link>
       </div>
+      <p className={classes.text}>{counter}</p>
       <button
         className={classes.button}
         onClick={() => {
@@ -19,6 +24,7 @@ export const App: FC<AppProps> = ({}) => {
       >
         Click me!
       </button>
+      <Outlet />
     </div>
   );
 };
