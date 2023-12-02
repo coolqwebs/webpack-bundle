@@ -1,63 +1,21 @@
-import path from "path";
 import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
-
-type Mode = "production" | "development";
+import { buildWebpack } from "./config/build/buildWebpack";
+import path from "path";
+import { type BuildMode } from "./config/build/types/types";
 interface EnvVariables {
-  mode: Mode;
+  mode: BuildMode;
   port: number;
 }
 
 export default (env: EnvVariables) => {
-  const isDev = env.mode === "development";
-  const config: webpack.Configuration = {
+  const config: webpack.Configuration = buildWebpack({
+    port: env.port ?? 1234,
     mode: env.mode ?? "development",
-    entry: path.resolve(__dirname, "src", "index.tsx"),
-    module: {
-      rules: [
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-            "css-loader",
-            "sass-loader",
-          ],
-        },
-        {
-          test: /\.tsx?$/,
-          use: "ts-loader",
-          exclude: /node_modules/,
-        },
-      ],
+    paths: {
+      entry: path.resolve(__dirname, "src", "index.tsx"),
+      html: path.resolve(__dirname, "public", "index.html"),
+      output: path.resolve(__dirname, "build"),
     },
-    resolve: {
-      extensions: [".tsx", ".ts", ".js"],
-    },
-    output: {
-      path: path.resolve(__dirname, "build"),
-      filename: "[name].[contenthash].js",
-      clean: true,
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "public", "index.html"),
-      }),
-      !isDev &&
-        new MiniCssExtractPlugin({
-          filename: "css/[name].[contenthash:8].css",
-          chunkFilename: "css/[name].[contenthash:8].css",
-        }),
-      isDev && new webpack.ProgressPlugin(),
-    ],
-    devtool: isDev ? "inline-source-map" : false,
-    devServer: isDev
-      ? {
-          port: env.port,
-          open: true,
-        }
-      : undefined,
-  };
+  });
   return config;
 };
