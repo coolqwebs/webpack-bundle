@@ -7,6 +7,30 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
 
   return [
     {
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            icon: true,
+            svgoConfig: {
+              plugins: [
+                {
+                  name: "convertColors",
+                  params: { currentColor: true },
+                },
+              ],
+            },
+          },
+        },
+      ],
+    },
+    {
+      test: /\.(png|jpg|jpeg|gif)$/i,
+      type: "asset/resource",
+    },
+    {
       test: /\.s[ac]ss$/i,
       use: [
         isDev ? "style-loader" : MiniCssExtractPlugin.loader,

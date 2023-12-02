@@ -1,6 +1,9 @@
 import { FC, useState } from "react";
 import classes from "./App.module.scss";
 import { Link, Outlet } from "react-router-dom";
+import pngImg from "@/assets/spider-man.png";
+import jpgImg from "@/assets/dennis.jpg";
+import SvgComponent from "@/assets/man-in-sofa.svg";
 
 interface AppProps {}
 
@@ -8,6 +11,14 @@ export const App: FC<AppProps> = ({}) => {
   const [counter, setCounter] = useState(0);
   return (
     <div>
+      <img src={pngImg} alt="lol" />
+      <img width={450} height={600} src={jpgImg} alt="kek" />
+      <SvgComponent
+        alignmentBaseline="mathematical"
+        width={100}
+        height={100}
+        color={"red"}
+      />
       <div>
         <Link to="/about">About</Link>
         <hr />

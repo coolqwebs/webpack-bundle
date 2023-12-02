@@ -1,13 +1,13 @@
 import { createRoot } from "react-dom/client";
-import { App } from "./components/App";
+import { App } from "@/components/App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { LazyAbout } from "./pages/About/index.lazy";
-import { LazyShop } from "./pages/Shop/index.lazy";
-import { LazyContacts } from "./pages/Contacts/index.lazy";
+import { LazyAbout } from "@/pages/About/index.lazy";
+import { LazyShop } from "@/pages/Shop/index.lazy";
+import { LazyContacts } from "@/pages/Contacts/index.lazy";
 import { Suspense } from "react";
-import About from "./pages/About";
-import Shop from "./pages/Shop";
-import Contacts from "./pages/Contacts";
+import About from "@/pages/About";
+import Shop from "@/pages/Shop";
+import Contacts from "@/pages/Contacts";
 
 const root = document.getElementById("root");
 
