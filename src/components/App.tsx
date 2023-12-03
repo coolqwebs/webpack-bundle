@@ -17,8 +17,8 @@ export const App: FC<AppProps> = () => {
   //   return <div>mobile</div>;
   // }
   return (
-    <div>
-      <h1>{PLATFORM}</h1>
+    <div data-testid="app.testid">
+      <h1 data-testid="header.testid">{PLATFORM}</h1>
       <img src={pngImg} alt="lol" />
       <img width={450} height={600} src={jpgImg} alt="kek" />
       <SvgComponent
