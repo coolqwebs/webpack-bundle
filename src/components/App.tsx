@@ -7,19 +7,15 @@ import SvgComponent from "@/assets/man-in-sofa.svg";
 
 interface AppProps {}
 
-const leg = (arm: string): void => {
-  console.log(arm);
-};
-
 export const App: FC<AppProps> = () => {
   const [counter, setCounter] = useState(0);
 
-  if (PLATFORM === "desktop") {
-    return <div>desktop</div>;
-  }
-  if (PLATFORM === "mobile") {
-    return <div>mobile</div>;
-  }
+  // if (PLATFORM === "desktop") {
+  //   return <div>desktop</div>;
+  // }
+  // if (PLATFORM === "mobile") {
+  //   return <div>mobile</div>;
+  // }
   return (
     <div>
       <h1>{PLATFORM}</h1>
