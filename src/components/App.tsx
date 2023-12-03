@@ -7,7 +7,11 @@ import SvgComponent from "@/assets/man-in-sofa.svg";
 
 interface AppProps {}
 
-export const App: FC<AppProps> = ({}) => {
+const leg = (arm: string): void => {
+  console.log(arm);
+};
+
+export const App: FC<AppProps> = () => {
   const [counter, setCounter] = useState(0);
 
   if (PLATFORM === "desktop") {
