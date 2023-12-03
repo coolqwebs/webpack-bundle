@@ -18,6 +18,7 @@ export default (env: EnvVariables) => {
       html: path.resolve(__dirname, "public", "index.html"),
       output: path.resolve(__dirname, "build"),
       src: path.resolve(__dirname, "src"),
+      public: path.resolve(__dirname, "public"),
     },
     analyzer: env.analyzer,
     platform: env.platform ?? "desktop",
